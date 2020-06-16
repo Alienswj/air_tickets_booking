@@ -51,6 +51,8 @@ export default {
           this.getRequest("/ticket/queryAllTickets", this.searchForm).then(
             resp => {
               console.log(resp);
+              this.$store.commit("initSearchResult", null);
+              this.$store.commit("initSearchResult", resp);
             }
           );
         } else {
