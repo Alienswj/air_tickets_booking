@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         currentUser: JSON.parse(window.sessionStorage.getItem("user")),
-        searchResult: null
+        searchResult: null,
+        queryCondition: null,
     },
     mutations: {
         initCurrentUser(state, user) {
@@ -14,6 +15,9 @@ const store = new Vuex.Store({
         },
         initSearchResult(state, result) {
             state.searchResult = result;
+        },
+        initQueryCondition(state, condition) {
+            state.queryCondition = condition;
         }
     },
     actions: {

@@ -16,7 +16,12 @@
           <el-input v-model="searchForm.destination"></el-input>
         </el-form-item>
         <el-form-item label="日期" prop="airDate">
-          <el-date-picker placeholder="点击选择" v-model="searchForm.airDate" style="width: 100%;"></el-date-picker>
+          <el-date-picker
+            placeholder="点击选择"
+            value-format="yyyy-MM-dd"
+            v-model="searchForm.airDate"
+            style="width: 100%;"
+          ></el-date-picker>
         </el-form-item>
         <el-button type="primary" @click="submitForm('searchForm')">查询</el-button>
         <el-button @click="resetForm('registerForm')">重置</el-button>
@@ -31,7 +36,9 @@ export default {
       searchForm: {
         departure: "",
         destination: "",
-        airDate: ""
+        airDate: "",
+        currentPage: 1,
+        pageSize: 10
       },
       rules: {
         departure: [
@@ -53,6 +60,11 @@ export default {
               console.log(resp);
               this.$store.commit("initSearchResult", null);
               this.$store.commit("initSearchResult", resp);
+              this.$store.commit("initQueryCondition", {
+                departure: this.searchForm.departure,
+                destination: this.searchForm.destination,
+                airDate: this.searchForm.airDate
+              });
             }
           );
         } else {
