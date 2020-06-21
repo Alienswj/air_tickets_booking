@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Register from './components/Register.vue'
 import Login from './views/Login.vue'
 import MainPage from './views/MainPage.vue'
+import OrderInfo from './components/OrderInfo.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,10 @@ export default new Router({
                     path: 'login',
                     name: 'Login',
                     component: Login,
+                }, {
+                    path: 'OrderInfo',
+                    name: 'OrderInfo',
+                    component: OrderInfo,
                 }
             ]
         }, {

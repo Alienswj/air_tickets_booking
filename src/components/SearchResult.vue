@@ -34,7 +34,7 @@
         </el-col>
         <el-col :span="3" style="margin-top:2%">
           <el-row>
-            <span style="font-size: 25px;font-weight: bold;">{{ticket.price}}</span>
+            <span style="font-size: 25px;font-weight: bold;margin-left:10px">{{ticket.price}}</span>
           </el-row>
           <el-row>
             <el-button type="primary" @click="select(ticket.airId,ticket.airDate)">选择</el-button>
@@ -73,7 +73,7 @@
               <el-dialog width="25%" title="添加旅客" :visible.sync="innerAddVisible" append-to-body>
                 <el-form style="width:300px">
                   <el-form-item label="姓名" :label-width="formLabelWidth">
-                    <el-input v-model="travelerInfoForm.name" autocomplete="off"></el-input>
+                    <el-input v-model="travelerInfoForm.name" auto-complete="off"></el-input>
                   </el-form-item>
                   <el-form-item label="身份证号" :label-width="formLabelWidth">
                     <el-input v-model="travelerInfoForm.idNumber" auto-complete="off"></el-input>

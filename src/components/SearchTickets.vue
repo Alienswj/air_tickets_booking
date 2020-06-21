@@ -18,9 +18,10 @@
         <el-form-item label="日期" prop="airDate">
           <el-date-picker
             placeholder="点击选择"
-            value-format="yyyy-MM-dd"
+            value-format="yyyy-MM-dd HH:mm:ss"
             v-model="searchForm.airDate"
             style="width: 100%;"
+            :picker-options="expireTimeOption"
           ></el-date-picker>
         </el-form-item>
         <el-button type="primary" @click="submitForm('searchForm')">查询</el-button>
@@ -47,6 +48,11 @@ export default {
         destination: [
           { required: true, message: "请输入到达城市", trigger: "blur" }
         ]
+      },
+      expireTimeOption: {
+        disabledDate(date) {
+          return date.getTime() <= Date.now();
+        }
       }
     };
   },
