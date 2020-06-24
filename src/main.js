@@ -3,10 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 import ElementUI from 'element-ui';
+import ECharts from 'vue-echarts'
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(ECharts)
 Vue.prototype.$store = store
 import { postRequest } from "./utils/api";
 import { postKeyValueRequest } from "./utils/api";

@@ -66,7 +66,7 @@
                 </el-table-column>
               </el-table>
               <div slot="footer" class="dialog-footer">
-                <el-button type="text" @click="innerVisible=true">添加旅客</el-button>
+                <el-button type="text" @click="innerAddVisible=true">添加旅客</el-button>
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="booking">预 订</el-button>
               </div>
@@ -196,6 +196,7 @@ export default {
       console.log(index, row);
       this.deleteRequest("/traveler/" + row.id).then(resp => {
         console.log(resp);
+        this.initTravlerInfo();
       });
     },
     handleSelect(index, row) {
@@ -232,11 +233,32 @@ export default {
       });
     },
     select(airId, airDate) {
-      this.dialogFormVisible = true;
-      this.orderForm.airId = airId;
-      this.orderForm.airDate = airDate;
-      this.orderForm.uid = this.$store.state.currentUser.id;
-      this.initTravlerInfo();
+      if (this.$store.state.currentUser == undefined) {
+        this.$confirm("您还未登录, 是否登录?", "提示", {
+          confirmButtonText: "登录",
+          cancelButtonText: "取消",
+          type: "warning"
+        })
+          .then(() => {
+            this.$router.replace("/login");
+            this.$message({
+              type: "success",
+              message: "已为您跳转到登录页面!"
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "您已取消登录"
+            });
+          });
+      } else {
+        this.dialogFormVisible = true;
+        this.orderForm.airId = airId;
+        this.orderForm.airDate = airDate;
+        this.orderForm.uid = this.$store.state.currentUser.id;
+        this.initTravlerInfo();
+      }
     },
     booking() {
       console.log(this.orderForm);
